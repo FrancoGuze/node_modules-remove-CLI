@@ -9,7 +9,7 @@
     "dev": "node dist/index.js"
   },
   "bin": {
-    "custom-cli": "./dist/index.js"
+    "remove-modules": "./dist/index.js"
   },
   "keywords": [],
   "author": "",
