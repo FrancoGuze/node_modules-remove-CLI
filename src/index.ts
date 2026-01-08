@@ -31,10 +31,10 @@ console.log(
   colorizeTexts(colors.dim, `\n${border}\n`)
 );
 const options = parseFlags(process.argv);
+
 if (options !== false) {
-  // console.log("From index.ts options val: ", options);
+  console.log(processCli,options)
   const nodeModules = await readActualDir(processCli, options);
-  // console.log("Res nodeModules search: ", nodeModules?.length);
   if (!nodeModules || nodeModules.length == 0) {
     console.log(
       colorizeTexts(colors.red, "Error:"),
@@ -42,7 +42,10 @@ if (options !== false) {
     );
   } else {
     const deleteModules = await askUser(
-      `${colorizeTexts(colors.green,String(nodeModules?.length))} node_modules found. Do you want to delete them? ${
+      `${colorizeTexts(
+        colors.green,
+        String(nodeModules?.length)
+      )} node_modules found. Do you want to delete them? ${
         options.force
           ? colorizeTexts(
               colors.red,

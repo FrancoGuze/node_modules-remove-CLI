@@ -14,11 +14,17 @@ export const parseFlags = (array: string[]) => {
   };
   const flags = array.slice(2);
   if (array.length <= 2) return options;
-  else if(flags[0] === "--help"){
-    console.log(colorizeTexts(colors.green,"--force:"),'This flag forces the program to skip the node_modules removal review stage')
-    console.log(colorizeTexts(colors.green,"--depth=<num>:"),"This flags defines the search range of the code. The bigger the value, the depper the search. The value should be an integre and bigger than 0")
+  else if (flags[0] === "--help") {
+    console.log(
+      colorizeTexts(colors.green, "--force:"),
+      "This flag forces the program to skip the node_modules removal review stage"
+    );
+    console.log(
+      colorizeTexts(colors.green, "--depth=<num>:"),
+      "This flags defines the search range of the code. The bigger the value, the depper the search. The value should be an integre and bigger than 0"
+    );
 
-    return false
+    return false;
   }
   for (let i = 0; i <= flags.length - 1; i++) {
     const flag = flags[i];
@@ -26,7 +32,8 @@ export const parseFlags = (array: string[]) => {
       case flag === "--force":
         options.force = true;
         break;
-
+      case typeof flag === "string" && flag.startsWith("--depth:"):
+        throw new Error("invalid character : in depth flag");
       case typeof flag === "string" && flag.startsWith("--depth="):
         const val = Number(flag.split("=")[1]);
         if (!Number.isInteger(val) || val === 0)

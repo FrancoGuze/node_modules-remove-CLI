@@ -18,9 +18,8 @@ const margin = Array(Math.floor(marginVal)).fill(" ").join("");
 console.log(colorizeTexts(colors.dim, `\n${border}\n`), margin, colorizeTexts(colors.bold, title), colorizeTexts(colors.dim, `\n${border}\n`));
 const options = parseFlags(process.argv);
 if (options !== false) {
-    // console.log("From index.ts options val: ", options);
+    console.log(processCli, options);
     const nodeModules = await readActualDir(processCli, options);
-    // console.log("Res nodeModules search: ", nodeModules?.length);
     if (!nodeModules || nodeModules.length == 0) {
         console.log(colorizeTexts(colors.red, "Error:"), "node-modules not found\n");
     }

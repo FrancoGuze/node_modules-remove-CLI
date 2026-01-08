@@ -20,6 +20,8 @@ export const parseFlags = (array) => {
             case flag === "--force":
                 options.force = true;
                 break;
+            case typeof flag === "string" && flag.startsWith("--depth:"):
+                throw new Error("invalid character : in depth flag");
             case typeof flag === "string" && flag.startsWith("--depth="):
                 const val = Number(flag.split("=")[1]);
                 if (!Number.isInteger(val) || val === 0)
